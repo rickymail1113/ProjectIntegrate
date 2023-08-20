@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>車牌辨識系統</title>
+
+	<style>
+		table, th, td{
+			border:solid black;
+		}
+
+		th, td{
+			padding:10px;
+		}
+
+		td{
+			line-height:30px;
+		}
+	</style>
+</head>
+<body>
+<div style="width:80%; margin:auto;">
+	<h1 style="text-align:center;">入場車輛資料</h1>
+	<hr>
+	<p><a href="/add_user" style="background-color:#128ffc; padding:10px;
+	color:white; border-radius:5px; text-decoration:none">新增資料</a></p>
+
+	<table style="width:90%; border-collapse:collapse;">
+		<thead>
+			<tr>
+				<th>序號</th>
+				<th>住戶姓名</th>
+				<th>訪客車牌</th>
+				<th>修改</th>
+				<th>刪除</th>
+			</tr>
+		</thead>
+		<tbody>
+			{%for i in db %}
+			<tr>
+				<td>{{i.uid}}</td>
+				<td>{{i.name}}</td>
+				<td>{{i.contact}}</td>
+				<td><a href="/edit_user/{{i.uid}}" style="background-color:blue; padding:10px; border-radius:5px;
+				color:white; text-decoration:none;">修改</a></td>
+
+				<td><a href="/user_delete/{{i.uid}}" style="background-color:red; padding:10px; border-radius:5px;
+				color:white; text-decoration:none;">刪除</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

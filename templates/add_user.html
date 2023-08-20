@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增資料</title>
+
+    <style>
+        input[type="text"]{
+            font-size:15pt;
+        }
+        input[type="submit"]{
+            padding:10px;
+            background:#128ffc;
+            color:white;
+            border-radius:5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div style="width:50%; margin:auto;">
+	<h1 style="text-align:center;">新增資料</h1>
+	<hr>
+    <form action="/index" method="POST">
+        <div style="margin:auto;">
+            <p>
+                <label style="display:block; font-size:15pt;">姓名:</label>
+                <br>
+                <input type="text" name="uname" placeholder="輸入文字"/>
+            </p>
+            <p>
+                <label style="display:block; font-size:15pt;">車牌:</label>
+                <br>
+                <input type="text" name="contact" placeholder="輸入文字"/>
+            </p>
+            <br>
+            <input type="submit" value="資料送出" class="submitClass"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

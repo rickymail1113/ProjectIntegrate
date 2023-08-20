@@ -1,0 +1,37 @@
+html,body{
+  padding:0;
+  margin:0;
+  background-color:#B0E0E6;
+}
+#wrapper{
+  margin-left:auto;
+  margin-right:auto;
+  /* border:1px solid #f00; */
+  width:1004px;
+}
+#tb_wrapper td{
+  vertical-align:top;
+}
+#left_column{
+  width:150px;
+}
+#middle_column{
+
+}
+#right_column{
+  width:20%;
+  padding:5px;
+}
+#test{
+	color:red;
+}
+.testClass{
+	color:blue;
+}
+@media screen and (max-width: 520px)
+{
+	/* CSS樣式規則 */
+	html, body{
+		background-color:red;
+	}	
+}

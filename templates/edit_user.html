@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>編輯資料</title>
+
+    <style>
+        input[type="text"]{
+            font-size:15pt;
+        }
+        input[type="submit"]{
+            padding:10px;
+            background:#128ffc;
+            color:white;
+            border-radius:5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div style="width:50%; margin:auto;">
+	<h1 style="text-align:center;">修改資料</h1>
+	<hr>
+	<br>
+    <form action="/user_edited/{{data.uid}}" method="POST">
+        <div style="margin:auto;">
+            <p>
+                <label style="display:block; font-size:15pt;">修改姓名:</label>
+                <br>
+                <input type="text" name="uname" value="{{data.name}}"/>
+            </p>
+            <p>
+                <label style="display:block; font-size:15pt;">修改車牌:</label>
+                <br>
+                <input type="text" name="contact" value="{{data.contact}}"/>
+            </p>
+            <br>
+            <input type="submit" value="確定修改" class="inputBtnClass"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

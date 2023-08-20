@@ -1,0 +1,21 @@
+@startuml
+
+actor Browser
+
+Browser -> app : index(GET)
+Browser <- app : index.html
+
+Browser -> app : add_user()
+Browser <- app : add_user.html
+
+Browser -> app : edit_user()
+Browser <- app : edit_user.html
+
+app -> app : index()
+app -> app : user_edited(POST)
+Browser <- app : index.html
+
+Browser -> app : delete_user()
+app <- app : index()
+
+@enduml
