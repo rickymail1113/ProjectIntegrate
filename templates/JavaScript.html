@@ -1,0 +1,46 @@
+<html>
+<body>
+<button type="button" onclick="document.getElementById('demo').innerHTML = Date( )"> Click to display Date and Time.</button>
+<p id="demo"></p>
+<script src="main.js">
+</script>
+
+<div>
+	<p>
+	<input name="myInput" type="text" size="20"/><br/>
+	<input name="myInput" type="text" size="20"/><br/>
+	<input name="myInput" type="text" size="20"/><br/>
+	<br/>
+	<button type="button" onclick="getElements( )">name為myInput的元素有幾個?</button>
+	</p>
+	
+	<script type="text/javascript">
+		function getElements( ) {
+		var x=document.getElementsByName("myInput");
+		alert("name為myInput的元素有幾個?=="+x.length);
+		}
+	</script>
+</div>
+
+
+
+<div>
+	<p>
+	<input name="myInput2" type="text" size="20"/><br />
+	<input name="myInput2" type="text" size="20"/><br />
+	<br />
+	<button type="button" onclick="getElements( )">tag為input的元素有幾個?</button>
+	</p>
+	
+	<script type="text/javascript">
+		function getElements( ) {
+		var x=document.getElementsByTagName("input2");
+		alert("name為myInput的元素有幾個?=="+x.length);
+		}
+	</script>
+<div>
+
+
+
+</body>
+</html>

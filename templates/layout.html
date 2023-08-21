@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<div style="width:80%; margin:auto;">
+        <div style="width:20%; padding:10px; background-color:blue; color:white; display: inline-block; text-align:center;">首頁
+        <a href="add_user.html"></a></div>
+        <div style="width:20%; padding:10px; background-color:blue; color:white; display: inline-block; text-align:center;">新增</div>
+        <div style="width:20%; padding:10px; background-color:blue; color:white; display: inline-block; text-align:center;">編輯</div>
+        <div style="width:20%; padding:10px; background-color:yellow; display: inline-block; text-align:center;"
+        onclick="login()" id="login">登入</div>
+        <div style="width:20%; padding:10px; background-color:gray; color:white; display: none; text-align:center;"
+        onclick="logout()" id="logout">您好, xxx. 登出</div>
+    </div>
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    {% block body %}
+
+    {% endblock %}
+</body>
+</html>

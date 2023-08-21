@@ -17,9 +17,12 @@
 			line-height:30px;
 		}
 	</style>
+
 </head>
 <body>
-<div style="width:80%; margin:auto;">
+{% extends 'layout.html' %}
+{% block body %}
+	<div style="width:80%; margin:auto;">
 	<h1 style="text-align:center;">入場車輛資料</h1>
 	<hr>
 	<p><a href="/add_user" style="background-color:#128ffc; padding:10px;
@@ -50,6 +53,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
-</div>
+	</div>
 </body>
+{% endblock %}
 </html>

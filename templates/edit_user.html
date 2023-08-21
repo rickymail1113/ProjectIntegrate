@@ -18,8 +18,10 @@
     </style>
 </head>
 <body>
+{% extends "layout.html" %}
+{% block body %}
 <div style="width:50%; margin:auto;">
-	<h1 style="text-align:center;">修改資料</h1>
+    <h1 style="text-align:center;">修改資料</h1>
 	<hr>
 	<br>
     <form action="/user_edited/{{data.uid}}" method="POST">
@@ -40,4 +42,5 @@
     </form>
 </div>
 </body>
+{% endblock %}
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash, url_for
 from datetime import datetime
 import time
 
@@ -16,13 +16,8 @@ DB = []
 
 
 @app.route("/")
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/index")
 def index():
-    if "POST" == request.method:
-        if 0 < len(request.form.get("uname")) and 0 < len(request.form.get("contact")):
-            unix_num = int(datetime.now().timestamp())
-            DB.append(Guest(unix_num, request.form.get("uname"), request.form.get("contact")))
-
     return render_template("index.html", db=DB)
 
 
@@ -31,14 +26,24 @@ def add_user():
     return render_template("add_user.html")
 
 
-@app.route("/edit_user")
+@app.route("/user_add", methods=["POST"])
+def user_add():
+    if 0 < len(request.form.get("uname")) and 0 < len(request.form.get("contact")):
+        unix_num = int(datetime.now().timestamp())
+        DB.append(Guest(unix_num, request.form.get("uname"), request.form.get("contact")))
+        flash("新增成功")
+        flash("請繼續")
+
+    return redirect(url_for('index'))
+
+
 @app.route("/edit_user/<int:uid>")
 def edit_user(uid):
     for i in DB:
         if uid == i.uid:
             return render_template("edit_user.html", data=i)
 
-    return render_template("index.html", db=DB)
+    return redirect(url_for('index'))
 
 
 @app.route("/user_edited/<int:uid>", methods=["POST"])
@@ -49,7 +54,7 @@ def user_edited(uid):
             i.contact = request.form.get("contact")
             break
 
-    return render_template("index.html", db=DB)
+    return redirect(url_for('index'))
 
 
 @app.route("/user_delete/<int:uid>")
@@ -66,4 +71,5 @@ def user_delete(uid):
 
 
 if __name__ == "__main__":
+    app.secret_key="123456789"
     app.run(host="0.0.0.0", port=8080, debug=True)

@@ -18,25 +18,32 @@
     </style>
 </head>
 <body>
-<div style="width:50%; margin:auto;">
-	<h1 style="text-align:center;">新增資料</h1>
-	<hr>
-    <form action="/index" method="POST">
-        <div style="margin:auto;">
-            <p>
-                <label style="display:block; font-size:15pt;">姓名:</label>
+    {% extends 'layout.html' %}
+    {% block body %}
+        <div style="width:50%; margin:auto;">
+        <h1 style="text-align:center;">新增資料</h1>
+        <hr>
+        <form action="/user_add" method="POST">
+            <div style="margin:auto;">
+                <p>
+                    <label style="display:block; font-size:15pt;">姓名:</label>
+                    <br>
+                    <input type="text" name="uname" placeholder="輸入文字"/>
+                </p>
+                <p>
+                    <label style="display:block; font-size:15pt;">車牌:</label>
+                    <br>
+                    <input type="text" name="contact" placeholder="輸入文字"/>
+                </p>
                 <br>
-                <input type="text" name="uname" placeholder="輸入文字"/>
-            </p>
-            <p>
-                <label style="display:block; font-size:15pt;">車牌:</label>
-                <br>
-                <input type="text" name="contact" placeholder="輸入文字"/>
-            </p>
-            <br>
-            <input type="submit" value="資料送出" class="submitClass"/>
+                <input type="submit" value="資料送出" class="submitClass"/>
+            </div>
+        </form>
         </div>
-    </form>
-</div>
+    <!--
+    {% include 'xxx.html' %}
+    -->
+    {% endblock %}
+
 </body>
 </html>
