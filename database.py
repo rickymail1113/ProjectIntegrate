@@ -28,10 +28,23 @@ def insert_data(name, str_contest): # 新增資料
 def query_datas(): # 取得所有資料
     global str_table
     conn, cursor = use_my_database()
-    conn.row_factory = sqlite3.Row
     cursor.execute(f"select * from {str_table}")
-    data = cursor.fetchall()
-    return data
+    conn.row_factory = sqlite3.Row
+    datas = cursor.fetchall()
+
+    list_datas = []
+    str_column = []
+    for i in cursor.description:
+        str_column.append(i[0])
+
+    for uint in datas:
+        temp = {}
+        for i in range(len(str_column)):
+            temp[str_column[i]] = uint[i]
+
+        list_datas.append(temp)
+
+    return list_datas
 
 
 def find_data(uid): # 查詢資料
@@ -56,34 +69,34 @@ def delete_data(uid): # 刪除資料
     conn.commit()
 
 
-# 1. 建立資料表
+# # 1. 建立資料表
 # create_table()
-
-# 2. 新增測試資料
-insert_data("Bob", "BMW-8787")
-
-#3. 查詢資料庫
-datas = query_datas()
-if None != query_datas():
-    print(datas)
-    print(datas[0][0])
-    data = find_data(datas[0][0])
-    print(data)
-
-# 4. 修改資料
-datas = query_datas()
-if None != query_datas():
-    data = find_data(datas[0][0])
-    update_data(datas[0][0], "Sam", "SUV-6969")
-    data = find_data(datas[0][0])
-    print(data)
-
-# 5. 刪除資料
-datas = query_datas()
-if None != query_datas():
-    print("before delete============")
-    print(query_datas())
-    data = find_data(datas[0][0])
-    delete_data(datas[0][0])
-    print("after delete============")
-    print(query_datas())
+#
+# # 2. 新增測試資料
+# insert_data("Bob", "BMW-8787")
+#
+# #3. 查詢資料庫
+# datas = query_datas()
+# if None != query_datas():
+#     print(datas)
+#     print(datas[0][0])
+#     data = find_data(datas[0][0])
+#     print(data)
+#
+# # 4. 修改資料
+# datas = query_datas()
+# if None != query_datas():
+#     data = find_data(datas[0][0])
+#     update_data(datas[0][0], "Sam", "SUV-6969")
+#     data = find_data(datas[0][0])
+#     print(data)
+#
+# # 5. 刪除資料
+# datas = query_datas()
+# if None != query_datas():
+#     print("before delete============")
+#     print(query_datas())
+#     data = find_data(datas[0][0])
+#     delete_data(datas[0][0])
+#     print("after delete============")
+#     print(query_datas())

@@ -15,6 +15,7 @@
 
 		td{
 			line-height:30px;
+			margin:auto;
 		}
 	</style>
 
@@ -25,9 +26,6 @@
 	<div style="width:80%; margin:auto;">
 	<h1 style="text-align:center;">入場車輛資料</h1>
 	<hr>
-	<p><a href="/add_user" style="background-color:#128ffc; padding:10px;
-	color:white; border-radius:5px; text-decoration:none">新增資料</a></p>
-
 	<table style="width:90%; border-collapse:collapse;">
 		<thead>
 			<tr>
@@ -43,7 +41,7 @@
 			<tr>
 				<td>{{i.uid}}</td>
 				<td>{{i.name}}</td>
-				<td>{{i.contact}}</td>
+				<td>{{i.content}}</td>
 				<td><a href="/edit_user/{{i.uid}}" style="background-color:blue; padding:10px; border-radius:5px;
 				color:white; text-decoration:none;">修改</a></td>
 
