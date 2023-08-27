@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, ses
 from datetime import datetime
 import time
 import database
+import requests
 
 app = Flask(__name__)
 
@@ -18,9 +19,16 @@ DB = []
 
 @app.route("/")
 @app.route("/index")
+# def index():
+#     print(database.query_datas())
+#     return render_template("index.html", db=database.query_datas())
 def index():
-    print(database.query_datas())
-    return render_template("index.html", db=database.query_datas())
+     result = requests.post("https://h46cafa2f1.execute-api.ap-northeast-1.amazonaws.com/default/getStatus")
+     list = []
+     for i in result.json():
+         data = Guest(i['created'], i['status'], i['car_no'])
+         list.append(data)
+     return render_template("index.html", db=list)
 
 
 @app.route("/add_user")
