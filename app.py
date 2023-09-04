@@ -17,6 +17,8 @@ count = 0
 DB = []
 
 
+AWS_DataBase = []
+
 @app.route("/")
 @app.route("/index")
 # def index():
@@ -24,11 +26,11 @@ DB = []
 #     return render_template("index.html", db=database.query_datas())
 def index():
      result = requests.post("https://h46cafa2f1.execute-api.ap-northeast-1.amazonaws.com/default/getStatus")
-     list = []
+     AWS_DataBase.clear()
      for i in result.json():
          data = Guest(i['created'], i['status'], i['car_no'])
-         list.append(data)
-     return render_template("index.html", db=list)
+         AWS_DataBase.append(data)
+     return render_template("index.html", db=AWS_DataBase)
 
 
 @app.route("/add_user")
@@ -49,9 +51,11 @@ def user_add():
 @app.route("/edit_user/<int:uid>")
 def edit_user(uid):
     if 0 < uid:
-        data = database.find_data(uid)
-        if None != data:
-            return render_template("edit_user.html", data=Guest(data[0], data[1], data[2]))
+        # data = database.find_data(uid)
+        for i in AWS_DataBase:
+            print(i)
+            if uid == i.uid:
+                return render_template("edit_user.html", data=i)
 
     return redirect(url_for('index'))
 
