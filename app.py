@@ -63,7 +63,23 @@ def edit_user(uid):
 @app.route("/user_edited/<int:uid>", methods=["POST"])
 def user_edited(uid):
     if 0 < uid:
-        data = database.update_data(uid, request.form.get("uname"), request.form.get("content"))
+        # data = database.update_data(uid, request.form.get("uname"), request.form.get("content"))
+        # 设置请求头
+
+        data = {}
+        for i in AWS_DataBase:
+            print(i)
+            if uid == i.uid:
+                data = {'car_no': i.content, 'created': uid}
+                break
+
+
+        headers = {'Content-Type': 'application/json'}
+        # 發送POST请求
+        result = requests.post("https://h46cafa2f1.execute-api.ap-northeast-1.amazonaws.com/default/updateStatus",
+                               json=data)
+        print(request.base_url)
+        print(result)
 
     return redirect(url_for('index'))
 
