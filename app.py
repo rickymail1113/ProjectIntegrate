@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 import database
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -40,10 +41,26 @@ def add_user():
 
 @app.route("/user_add", methods=["POST"])
 def user_add():
-    if 0 < len(request.form.get("uname")) and 0 < len(request.form.get("content")):
-        unix_num = int(datetime.now().timestamp())
-        database.insert_data(request.form.get("uname"), request.form.get("content"))
-        flash("新增成功")
+    # if 0 < len(request.form.get("uname")) and 0 < len(request.form.get("content")):
+    #     unix_num = int(datetime.now().timestamp())
+    #     database.insert_data(request.form.get("uname"), request.form.get("content"))
+    #     flash("新增成功")
+    file = request.files['filename']
+    file.save(os.path.join(app.root_path, 'static', file.filename))
+    filename = file.filename
+
+    # 设置需要传输的二进制数据
+    data = open('./static/' + filename, 'rb').read()
+
+    # 设置请求头
+    headers = {'Content-Type': 'application/octet-stream'}
+
+    # 发送POST请求
+    result = requests.post("https://h46cafa2f1.execute-api.ap-northeast-1.amazonaws.com/default/ImageUploadOCR",
+                      data=data, headers=headers)
+    print(result.json())
+
+    flash("AWS判讀回覆!!")
 
     return redirect(url_for('index'))
 

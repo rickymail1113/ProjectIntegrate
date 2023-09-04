@@ -23,7 +23,7 @@
         <div style="width:50%; margin:auto;">
         <h1 style="text-align:center;">新增資料</h1>
         <hr>
-        <form action="/user_add" method="POST">
+        <form action="/user_add" method="POST" enctype="multipart/form-data">
             <div style="margin:auto;">
                 <p>
                     <label style="display:block; font-size:15pt;">姓名:</label>
@@ -35,11 +35,34 @@
                     <br>
                     <input type="text" name="content" placeholder="輸入文字"/>
                 </p>
+				<p>
+                    <label style="display:block; font-size:15pt;">選取照片:</label>
+                    <br>
+                    <input type="file" id="packfile" name="filename" accept=".png, .jpg, .gif, .jpeg"/>
+					<img id="Im_image"  width="300" height="200" style="display:none"/>
+                </p>
                 <br>
                 <input type="submit" value="資料送出" class="submitClass"/>
             </div>
         </form>
         </div>
+		
+		<script>
+        const input = document.getElementById('packfile');
+        input.addEventListener('change', handleFilesImage, false);
+
+        function handleFilesImage() {
+          const fileData = this.files;
+          const reader = new FileReader();
+          reader.addEventListener('load', file => {
+            const img = document.getElementById('Im_image');
+            img.style.display="inline-block";
+            img.src = file.target.result;
+          });
+          reader.readAsDataURL(fileData[0]);
+        }
+
+		</script>
     <!--
     {% include 'xxx.html' %}
     -->

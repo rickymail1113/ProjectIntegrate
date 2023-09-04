@@ -41,7 +41,7 @@
 			{%for i in db %}
 			<tr>
 				<td>{{i.uid}}</td>
-				<td>{{i.name}}</td>
+				<td></td>
 				<td>{{i.content}}</td>
 				<td><a href="/edit_user/{{i.uid}}" style="background-color:blue; padding:10px; border-radius:5px;
 				color:white; text-decoration:none;">修改</a></td>
@@ -49,7 +49,7 @@
 				<td><a href="/user_delete/{{i.uid}}" style="background-color:red; padding:10px; border-radius:5px;
 				color:white; text-decoration:none;">刪除</a></td>
 
-				<th>--狀態</th>
+				<th>{{i.name}}--狀態</th>
 			</tr>
 			{% endfor %}
 		</tbody>
